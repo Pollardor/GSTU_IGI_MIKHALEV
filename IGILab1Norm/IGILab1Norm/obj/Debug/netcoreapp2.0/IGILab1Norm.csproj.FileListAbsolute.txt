@@ -1,0 +1,11 @@
+D:\Projects\Visual Studio Projects\IGILab1Norm\IGILab1Norm\bin\Debug\netcoreapp2.0\IGILab1Norm.deps.json
+D:\Projects\Visual Studio Projects\IGILab1Norm\IGILab1Norm\bin\Debug\netcoreapp2.0\IGILab1Norm.runtimeconfig.json
+D:\Projects\Visual Studio Projects\IGILab1Norm\IGILab1Norm\bin\Debug\netcoreapp2.0\IGILab1Norm.runtimeconfig.dev.json
+D:\Projects\Visual Studio Projects\IGILab1Norm\IGILab1Norm\bin\Debug\netcoreapp2.0\IGILab1Norm.dll
+D:\Projects\Visual Studio Projects\IGILab1Norm\IGILab1Norm\obj\Debug\netcoreapp2.0\IGILab1Norm.csprojResolveAssemblyReference.cache
+D:\Projects\Visual Studio Projects\IGILab1Norm\IGILab1Norm\obj\Debug\netcoreapp2.0\IGILab1Norm.csproj.CoreCompileInputs.cache
+D:\Projects\Visual Studio Projects\IGILab1Norm\IGILab1Norm\obj\Debug\netcoreapp2.0\IGILab1Norm.AssemblyInfoInputs.cache
+D:\Projects\Visual Studio Projects\IGILab1Norm\IGILab1Norm\obj\Debug\netcoreapp2.0\IGILab1Norm.AssemblyInfo.cs
+D:\Projects\Visual Studio Projects\IGILab1Norm\IGILab1Norm\bin\Debug\netcoreapp2.0\IGILab1Norm.pdb
+D:\Projects\Visual Studio Projects\IGILab1Norm\IGILab1Norm\obj\Debug\netcoreapp2.0\IGILab1Norm.dll
+D:\Projects\Visual Studio Projects\IGILab1Norm\IGILab1Norm\obj\Debug\netcoreapp2.0\IGILab1Norm.pdb
