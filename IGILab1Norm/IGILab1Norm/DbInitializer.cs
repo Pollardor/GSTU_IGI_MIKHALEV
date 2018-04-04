@@ -90,8 +90,8 @@ namespace IGILab1Norm
                 worker = workerName[random.Next(workerName.Length)] + " " + workerSurname[random.Next(workerSurname.Length)];
                 paid = random.Next() % 2 == 1;
 
-                db.Rents.Add(new Rent() { RentDate = rentDate, DateGet = dateGet, Car = db.Cars.Local.ElementAt(random.Next(0, i == 0 ? i : i - 1)),
-                    Client = db.Clients.Local.ElementAt(random.Next(0, i == 0 ? i : i - 1)), RentPrice = rentPrice, Paid = paid, WorkerFIO = worker });
+                db.Rents.Add(new Rent() { RentDate = rentDate, DateGet = dateGet, CarID = db.Cars.Local.ElementAt(random.Next(0, i == 0 ? i : i - 1)).CarID,
+                    ClientID = db.Clients.Local.ElementAt(random.Next(0, i == 0 ? i : i - 1)).Id, RentPrice = rentPrice, Paid = paid, WorkerFIO = worker });
             }
             db.SaveChanges();
         }

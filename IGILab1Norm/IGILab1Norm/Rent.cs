@@ -9,7 +9,9 @@ namespace IGILab1Norm
         public int RentID { get; set; }
         public DateTime RentDate { get; set; }
         public DateTime DateGet { get; set; }
+        public int CarID { get; set; }
         public virtual Car Car { get; set; }
+        public int ClientID { get; set; }
         public virtual Client Client { get; set; }
         public int RentPrice { get; set; }
         public bool Paid { get; set; }
