@@ -1,0 +1,80 @@
+﻿@{
+    ViewData["Title"] = "";
+}
+<div style="border:solid black 2px; margin-top:5px; padding-top:20px; padding-bottom:20px; ">
+    <h1>@ViewData["Title"]</h1>
+    <h3>@ViewData["Message"]</h3>
+    <center><h2>Post Запрос</h2></center>
+
+    <div align="center">
+        <img src="~/images/1406543991_931531_84.jpg" />
+    </div>
+
+    <h2 align="center">Our offices:  </h2>
+    <table align="center" border="1" style=" margin-top: 20px; border-style: dashed dashed dashed;">
+        <tr><td>General Office</td><td>carrent@mail.com</td><td>77-66-55</td>
+        <tr><td>Second Office</td><td>carrentmain@mail.com</td><td>22-33-44</td>
+
+        <tr>
+            <td>Third Office</td>
+            <td>TakeMyCar@mail.com</td>
+            <td>27-38-49</td>
+    </table>
+
+    <div align="center" style="margin-top">
+        <div style="border:double grey 5px; width:400px;">
+            <form class="emailForm" style=" width:400px; margin-top:10px; padding-top:20px; padding-bottom:20px">
+                <h2>Car Rent</h2>
+
+                <input type="date" />
+
+                <div>Choose youre car:</div>
+                <select>
+                    <option value="Audi">Audi</option>
+                    <option value="BMW">BMW</option>
+                    <option value="Mercedes">Mercedes</option>
+                    <option value="Renault">Renault</option>
+                    <option value="Mazda">Mazda</option>
+                    <option value="Bentley">Bentley</option>
+                    <option value="Subaru">Subaru</option>
+                    <option value="Toyota">Toyota</option>
+                </select><br />
+
+            </form>
+            <div style="margin-bottom: 30px">
+                @using (Html.BeginForm("GetEmail", "Home", FormMethod.Post))
+            {
+                <div>Input Contact Email</div>
+                <input type="email" id="email" name="email" />
+                <div>
+                    <input type="submit" id="sendInfo" value="Create" />
+                </div>
+
+        }
+            </div>
+        </div>
+    </div>
+    <div class="container;" align="center">
+        <h2>Contacts of Car Rent</h2>
+        <div class="container" style="width:300px">
+            <ul>
+                <li>
+                    Mail:carrent@mail.com
+                </li>
+                Phones:
+                <li>
+                    42-58-32
+                </li>
+                <li>
+                    41-58-32
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+
+
+</div>
+<h2>Вариант 10: Аренда Авто</h2>
+
