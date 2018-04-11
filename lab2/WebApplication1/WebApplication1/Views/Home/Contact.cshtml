@@ -1,0 +1,74 @@
+﻿@{
+    ViewData["Title"] = "Contact information";
+}
+<h2>@ViewData["Title"]</h2>
+<h3>@ViewData["Message"]</h3>
+<h1>Post- Запрос тут</h1>
+<table border="1">
+
+    <tr><td>Main office</td><td>main@gmail.com</td><td>23-34-56</td>
+    <tr><td>Other office</td><td>notmain@gmail.com</td><td>22-34-56</td>
+    <tr><td>Main office</td><td>main@gmail.com</td><td>23-34-56</td>
+    <tr><td>Other office</td><td>notmain@gmail.com</td><td>22-34-56</td>
+    <tr><td>Main office</td><td>main@gmail.com</td><td>23-34-56</td>
+    <tr><td>Other office</td><td>notmain@gmail.com</td><td>22-34-56</td>
+    <tr><td>Main office</td><td>main@gmail.com</td><td>23-34-56</td>
+    <tr><td>Other office</td><td>notmain@gmail.com</td><td>22-34-56</td>
+    <tr><td>Main office</td><td>main@gmail.com</td><td>23-34-56</td>
+    <tr><td>Other office</td><td>notmain@gmail.com</td><td>22-34-56</td>
+    <tr><td>Main office</td><td>main@gmail.com</td><td>23-34-56</td>
+    <tr><td>Other office</td><td>notmain@gmail.com</td><td>22-34-56</td>
+</table>
+
+
+
+
+<form  class="emailForm" style="border:solid black 1px; width:260px; margin-top:10px; padding-top:10px">
+
+    Mark service
+    <select>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select><br />
+             <div>
+                 @using (Html.BeginForm("getEmail", "Home",FormMethod.Post))
+                 {
+             <div>Input email</div>
+             <input type="email" id="email" name="email" />
+             <div> <input type="submit" id="sendEmail" value="Create" /></div>
+                }
+             </div>
+    <br />Our Contacts
+    <ul>
+        <li>
+            43-58-32
+        </li>
+        <li>
+            42-58-32
+        </li>
+        <li>
+            41-58-32
+        </li>
+    </ul>
+
+</form>
+
+
+
+<img src="~/images/index.jpg" />
+
+<address>
+    <strong>Support:</strong> <a href="mailto:Support@example.com">Support@example.com</a><br />
+    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
+</address>
+
+
+
+
+
+
+
+
