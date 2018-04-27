@@ -1,0 +1,97 @@
+﻿@{
+    ViewData["Title"] = "Journal";
+}
+@model AboutViewModel
+@using IGILab1Norm;
+<div style="border:double grey 4px; margin-top:5px; padding:20px; padding-bottom:20px; ">
+    <form method="post" class="form-inline">
+        @if (Model.Car != null)
+        {
+            @Html.Label("Mark")
+            @Html.TextBox("CarMark", Model.Car.CarMark)
+            @Html.Label("Register Number")
+            @Html.TextBox("RegNum", Model.Car.RegNum)
+            <br />
+            @Html.Label("Body number")
+            @Html.TextBox("BodyNum", Model.Car.BodyNum)
+            @Html.Label("Engine number")
+            @Html.TextBox("EngNum", Model.Car.EngNum)
+            <br />
+            @Html.Label("Mileage")
+            @Html.TextBox("Mileage", Model.Car.Mileage)
+            @Html.Label("Car price")
+            @Html.TextBox("CarPrice", Model.Car.CarPrice)
+            <br />
+            @Html.Label("Day price")
+            @Html.TextBox("DayPrice", Model.Car.DayPrice)
+            @Html.Label("Date TO")
+            <input type="date" id="DateTO" name="DateTO" value="@Model.Car.DateTO.ToString("yyyy-MM-dd")" />
+            <br />
+            @Html.Label("Mech FIO")
+            @Html.TextBox("MechFIO", Model.Car.MechFIO)
+            @Html.Label("Car age")
+            @Html.TextBox("CarAge", Model.Car.CarAge)
+            <br />
+        }
+        else
+        {
+            @Html.Label("Mark")
+            @Html.TextBox("CarMark")
+            @Html.Label("Register Number")
+            @Html.TextBox("RegNum")
+            <br />
+            @Html.Label("Body number")
+            @Html.TextBox("BodyNum")
+            @Html.Label("Engine number")
+            @Html.TextBox("EngNum")
+            <br />
+            @Html.Label("Mileage")
+            @Html.TextBox("Mileage")
+            @Html.Label("Car price")
+            @Html.TextBox("CarPrice")
+            <br />
+            @Html.Label("Day price")
+            @Html.TextBox("DayPrice")
+            @Html.Label("Date TO")
+            <input type="date" id="DateTO" name="DateTO" value="" />
+            <br />
+            @Html.Label("Mech FIO")
+            @Html.TextBox("MechFIO")
+            @Html.Label("Car age")
+            @Html.TextBox("CarAge")
+            <br />
+        }
+        <input type="submit" value="ADD" />
+    </form>
+    <table style="width:100%; border:4px double; padding:20px;">
+        <tr>
+            <th>ID</th>
+            <th>Mark</th>
+            <th>Register Number</th>
+            <th>Body Number</th>
+            <th>Engine Number</th>
+            <th>Mileage</th>
+            <th>Car Price</th>
+            <th>Day Price</th>
+            <th>Date TO</th>
+            <th>Mech FIO</th>
+            <th>Car Age</th>
+        </tr>
+        @foreach(Car current in Model.Cars)
+        {
+        <tr>
+            <td>@current.CarID</td>
+            <td>@current.CarMark</td>
+            <td>@current.RegNum</td>
+            <td>@current.BodyNum</td>
+            <td>@current.EngNum</td>
+            <td>@current.Mileage</td>
+            <td>@current.CarPrice</td>
+            <td>@current.DayPrice</td>
+            <td>@current.DateTO.ToString("yyyy-MM-dd")</td>
+            <td>@current.MechFIO</td>
+            <td>@current.CarAge</td>
+        </tr>
+        }
+    </table>
+</div>

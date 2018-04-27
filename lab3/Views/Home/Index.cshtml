@@ -1,0 +1,73 @@
+﻿@{
+    ViewData["Title"] = "";
+}
+@model IndexViewModel
+@using IGILab1Norm;
+
+<div style="border:double grey 4px; margin-top:5px; padding:20px; padding-bottom:20px; ">
+    <form method="post" class="form-inline">
+        @if (Model.Rent != null)
+        {
+            @Html.Label("Rent date")
+            <input type="date" id="RentDate" name="RentDate" value="@Model.Rent.RentDate.ToString("yyyy-MM-dd")"  />
+            @Html.Label("Date get")
+            <input type="date" id="DateGet" name="DateGet" value="@Model.Rent.DateGet.ToString("yyyy-MM-dd")" />
+            <br />
+            @Html.Label("Price")
+            @Html.TextBox("RentPrice", Model.Rent.RentPrice)
+            @Html.Label("Paid")
+            <input type="checkbox" id="Paid" name="Paid" value="@Model.Rent.Paid" />
+            <br />
+            @Html.Label("Worker FIO")
+            @Html.TextBox("WorkerFIO", Model.Rent.WorkerFIO)
+            <br />
+        }
+        else
+        {
+            @Html.Label("Rent date")
+            <input type="date" id="RentDate" name="RentDate" value="" />
+            @Html.Label("Date get")
+            <input type="date" id="DateGet" name="DateGet" value="" />
+            <br />
+            @Html.Label("Price")
+            @Html.TextBox("RentPrice")
+            @Html.Label("Paid")
+            <input type="checkbox" id="Paid" name="Paid" value="false" />
+            <br />
+            @Html.Label("Worker FIO")
+            @Html.TextBox("WorkerFIO")
+            <br />
+        }
+        @Html.Label("Car ID")
+        @Html.DropDownList("CarID", new SelectList(new int[] { 1, 2, 3, 4, 5 }))
+        @Html.Label("Client ID")
+        @Html.DropDownList("ClientID", new SelectList(new int[] { 1, 2, 3, 4, 5 }))
+        <br />
+        <input type="submit" value="ADD" />
+    </form>
+    <table style="width:100%; border:4px double; padding:20px; ">
+        <tr>
+            <th>ID</th>
+            <th>Rent date</th>
+            <th>Date get</th>
+            <th>Car ID</th>
+            <th>Client ID</th>
+            <th>Rent price</th>
+            <th>is Paid</th>
+            <th>Worker FIO</th>
+        </tr>
+        @foreach (Rent current in Model.Rents)
+        {
+        <tr>
+            <td>@current.RentID</td>
+            <td>@current.RentDate.ToString("yyyy-MM-dd")</td>
+            <td>@current.DateGet.ToString("yyyy-MM-dd")</td>
+            <td>@current.CarID</td>
+            <td>@current.ClientID</td>
+            <td>@current.RentPrice</td>
+            <td>@current.Paid.ToString()</td>
+            <td>@current.WorkerFIO</td>
+        </tr>
+        }
+    </table>
+</div>

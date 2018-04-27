@@ -1,0 +1,69 @@
+﻿@{
+    ViewData["Title"] = "Contact information";
+}
+@model ContactViewModel
+@using IGILab1Norm;
+<div style="border:double grey 4px; margin-top:5px; padding:20px; padding-bottom:20px; ">
+    <form method="post" class="form-inline">
+        @if (Model.Client != null)
+    {
+        @Html.Label("FIO")
+        @Html.TextBox("ClientFIO", Model.Client.ClienFIO)
+        @Html.Label("Sex")
+        @Html.TextBox("ClientSex", Model.Client.ClientSex)
+        <br />
+        @Html.Label("Birthday")
+        <input type="date" id="Birthday" name="Bithday" value="@Model.Client.Birthday.ToString("yyyy-MM-dd")" />
+        @Html.Label("Adress")
+        @Html.TextBox("Adres", Model.Client.Adres)
+        <br />
+        @Html.Label("Phone")
+        @Html.TextBox("Phone", Model.Client.Phone)
+        @Html.Label("Passport number")
+        @Html.TextBox("PassNum", Model.Client.PassNum)
+        <br />
+}
+else
+{
+            @Html.Label("FIO")
+    @Html.TextBox("ClientFIO")
+    @Html.Label("Sex")
+    @Html.TextBox("ClientSex")
+    <br />
+    @Html.Label("Birthday")
+    <input type="date" id="Birthday" name="Bithday" value="" />
+    @Html.Label("Adress")
+    @Html.TextBox("Adres")
+    <br />
+    @Html.Label("Phone")
+    @Html.TextBox("Phone")
+    @Html.Label("Passport number")
+    @Html.TextBox("PassNum")
+    <br />
+}
+        <input type="submit" value="ADD" />
+    </form>
+    <table style="width:100%; border:4px double; padding:20px;">
+        <tr>
+            <th>ID</th>
+            <th>FIO</th>
+            <th>Sex</th>
+            <th>Birthday</th>
+            <th>Adress</th>
+            <th>Phone</th>
+            <th>Passport number</th>
+        </tr>
+        @foreach (Client current in Model.Clients)
+        {
+        <tr>
+            <td>@current.Id</td>
+            <td>@current.ClienFIO</td>
+            <td>@current.ClientSex</td>
+            <td>@current.Birthday.ToString("yyyy-MM-dd")</td>
+            <td>@current.Adres</td>
+            <td>@current.Phone</td>
+            <td>@current.PassNum</td>
+        </tr>
+        }
+    </table>
+</div>
