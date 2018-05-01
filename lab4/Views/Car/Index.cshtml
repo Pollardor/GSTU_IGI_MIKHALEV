@@ -1,0 +1,68 @@
+﻿@{
+    ViewData["Title"] = "Journal";
+}
+@model CarsViewModel
+@using IGILab1Norm;
+<div style="border:double grey 4px; margin-top:5px; padding:20px; padding-bottom:20px; ">
+    <form asp-action="Index" class="form-inline" method="post" style=" width:600px;margin:0px auto;">
+        Price per day rent: @Html.TextBox("DayPrice", Model.CarFilter.DayPrice)
+        Mech FIO: @Html.TextBox("MechFIO", Model.CarFilter.MechFIO)
+        Year: @Html.TextBox("YearTO", Model.CarFilter.YearTO)
+        <input type="submit" value="Find" />
+    </form>
+    <table style="width:100%; border:4px double; padding:20px;">
+        <tr>
+            <th>ID</th>
+            <th>
+                <a asp-action="Index" asp-route-sortState="@Model.CarSort.Models.MarkSort">
+                    Mark
+                </a>
+            </th>
+            <th>Register Number</th>
+            <th>Body Number</th>
+            <th>Engine Number</th>
+            <th>
+                <a asp-action="Index" asp-route-sortState="@Model.CarSort.Models.MileageSort">
+                    Mileage
+                </a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortState="@Model.CarSort.Models.PriceSort">
+                    Car Price
+                </a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortState="@Model.CarSort.Models.DayPriceSort">
+                    Day Price
+                </a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortState="@Model.CarSort.Models.DateTOSort">
+                    Date TO
+                </a>
+            </th>
+            <th>Mech FIO</th>
+            <th>
+                <a asp-action="Index" asp-route-sortState="@Model.CarSort.Models.AgeSort">
+                    Car Age
+                </a>
+            </th>
+        </tr>
+        @foreach (Car current in Model.Cars)
+        {
+            <tr>
+                <td>@current.CarID</td>
+                <td>@current.CarMark</td>
+                <td>@current.RegNum</td>
+                <td>@current.BodyNum</td>
+                <td>@current.EngNum</td>
+                <td>@current.Mileage</td>
+                <td>@current.CarPrice</td>
+                <td>@current.DayPrice</td>
+                <td>@current.DateTO.ToString("yyyy-MM-dd")</td>
+                <td>@current.MechFIO</td>
+                <td>@current.CarAge</td>
+            </tr>
+        }
+    </table>
+</div>

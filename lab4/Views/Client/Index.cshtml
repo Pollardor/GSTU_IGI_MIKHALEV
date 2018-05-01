@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "Contact information";
+}
+@model ClientsViewModel
+@using IGILab1Norm;
+<div style="border:double grey 4px; margin-top:5px; padding:20px; padding-bottom:20px; ">
+
+    <form asp-action="Index" class="form-inline" method="post" style=" width:600px;margin:0px auto;">
+        Client FIO: @Html.TextBox("ClientFIO", Model.ClientFilter.ClientFIO)
+        Passport Number: @Html.TextBox("PassNum", Model.ClientFilter.PassNum)
+        Phone: @Html.TextBox("Phone", Model.ClientFilter.Phone)
+        <input type="submit" value="Find" />
+    </form>
+    <table style="width:100%; border:4px double; padding:20px;">
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortState="@Model.ClientSort.Models.FIOSort">
+                    FIO
+                </a>
+            </th>
+            <th>
+                Sex
+            </th>
+            <th>
+                Birthday
+            </th>
+            <th>
+                Adress
+            </th>
+            <th>
+                Phone
+            </th>
+            <th>
+                Passport number
+            </th>
+        </tr>
+        @foreach (Client current in Model.Clients)
+        {
+            <tr>
+                <td>@current.Id</td>
+                <td>@current.ClienFIO</td>
+                <td>@current.ClientSex</td>
+                <td>@current.Birthday.ToString("yyyy-MM-dd")</td>
+                <td>@current.Adres</td>
+                <td>@current.Phone</td>
+                <td>@current.PassNum</td>
+            </tr>
+        }
+    </table>
+</div>

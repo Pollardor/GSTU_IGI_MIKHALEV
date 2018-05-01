@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "";
+}
+@model RentsViewModel
+@using IGILab1Norm;
+
+<div style="border:double grey 4px; margin-top:5px; padding:20px; padding-bottom:20px; ">
+    <form asp-action="Index" class="form-inline" method="post" style=" width:600px;margin:0px auto;">
+        Month of rent: @Html.TextBox("MonthRent", Model.RentFilter.MonthRent)
+        Worker FIO: @Html.TextBox("WorkerFIO", Model.RentFilter.WorkerFIO)
+        <input type="submit" value="Find" />
+    </form>
+    <table style="width:100%; border:4px double; padding:20px; ">
+        <tr>
+            <th>ID</th>
+            <th>
+                <a asp-action="Index" asp-route-sortState="@Model.RentSort.Models.RentDateSort">
+                    Rent date
+                    </a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortState="@Model.RentSort.Models.DateGetSort">
+                    Date get
+                </a>
+            </th>
+            <th>Car ID</th>
+            <th>Client ID</th>
+            <th>Rent price</th>
+            <th>is Paid</th>
+            <th>
+                <a asp-action="Index" asp-route-sortState="@Model.RentSort.Models.WorkerFIOSort">
+                    Worker FIO
+                    </a>
+</th>
+        </tr>
+        @foreach (Rent current in Model.Rents)
+        {
+        <tr>
+            <td>@current.RentID</td>
+            <td>@current.RentDate.ToString("yyyy-MM-dd")</td>
+            <td>@current.DateGet.ToString("yyyy-MM-dd")</td>
+            <td>@current.CarID</td>
+            <td>@current.ClientID</td>
+            <td>@current.RentPrice</td>
+            <td>@current.Paid.ToString()</td>
+            <td>@current.WorkerFIO</td>
+        </tr>
+        }
+    </table>
+</div>
