@@ -1,0 +1,86 @@
+﻿@model CacheViewModel
+@using IGILab1Norm;
+
+@{
+    ViewData["Title"] = "Cache";
+}
+
+<table style="width:100%; border:2px solid;">
+    <tr>
+        <th>ID</th>
+        <th>Mark</th>
+        <th>Register Number</th>
+        <th>Body Number</th>
+        <th>Engine Number</th>
+        <th>Mileage</th>
+        <th>Car Price</th>
+        <th>Day Price</th>
+        <th>Date TO</th>
+        <th>Mech FIO</th>
+        <th>Car Age</th>
+    </tr>
+    @foreach (Car current in Model.Cars)
+    {
+        <tr>
+            <td>@current.CarID</td>
+            <td>@current.CarMark</td>
+            <td>@current.RegNum</td>
+            <td>@current.BodyNum</td>
+            <td>@current.EngNum</td>
+            <td>@current.Mileage</td>
+            <td>@current.CarPrice</td>
+            <td>@current.DayPrice</td>
+            <td>@current.DateTO.ToString("yyyy-MM-dd")</td>
+            <td>@current.MechFIO</td>
+            <td>@current.CarAge</td>
+        </tr>
+    }
+</table>
+<table style="width:100%; border:2px solid;">
+    <tr>
+        <th>ID</th>
+        <th>Rent date</th>
+        <th>Date get</th>
+        <th>Car ID</th>
+        <th>Client ID</th>
+        <th>Rent price</th>
+        <th>is Paid</th>
+        <th>Worker FIO</th>
+    </tr>
+    @foreach (Rent current in Model.Rents)
+    {
+        <tr>
+            <td>@current.RentID</td>
+            <td>@current.RentDate.ToString("yyyy-MM-dd")</td>
+            <td>@current.DateGet.ToString("yyyy-MM-dd")</td>
+            <td>@current.CarID</td>
+            <td>@current.ClientID</td>
+            <td>@current.RentPrice</td>
+            <td>@current.Paid.ToString()</td>
+            <td>@current.WorkerFIO</td>
+        </tr>
+    }
+</table>
+<table style="width:100%; border:2px solid;">
+    <tr>
+        <th>ID</th>
+        <th>FIO</th>
+        <th>Sex</th>
+        <th>Birthday</th>
+        <th>Adress</th>
+        <th>Phone</th>
+        <th>Passport number</th>
+    </tr>
+    @foreach (Client current in Model.Clients)
+    {
+        <tr>
+            <td>@current.Id</td>
+            <td>@current.ClienFIO</td>
+            <td>@current.ClientSex</td>
+            <td>@current.Birthday.ToString("yyyy-MM-dd")</td>
+            <td>@current.Adres</td>
+            <td>@current.Phone</td>
+            <td>@current.PassNum</td>
+        </tr>
+    }
+</table>

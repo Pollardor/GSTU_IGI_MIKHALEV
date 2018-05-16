@@ -1,0 +1,39 @@
+﻿
+@using lab2.Models.AccountModel
+@model User
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+@using (Html.BeginForm("SaveUser", "Account", FormMethod.Post, new { @class = "form-signin" }))
+{
+    <table class="table-bordered" style="width:100%;height:100%">
+        <tbody>
+            <tr>
+                <td>@Html.EditorFor(m => Model.UserName)</td>
+            </tr>
+            <tr>
+                @{
+                    List<Microsoft.AspNetCore.Identity.IdentityRole> roles = (List<Microsoft.AspNetCore.Identity.IdentityRole>)ViewData["Roles"];
+
+
+                }
+                <td>
+                    <select name="role">
+                        @foreach (var role in roles)
+                        {
+                            <option value="@role.Name">@role.Name</option>
+                        }
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <input class="btn btn-success" type="submit" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <input type="hidden" value="@Model.UserName" name="userName" />
+
+}

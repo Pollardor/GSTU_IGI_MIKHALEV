@@ -1,0 +1,39 @@
+﻿
+@using lab2.Models.AccountModel
+@model List<User>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper "lab2.Helpers.EnvTagHelper,  lab2"
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+<head>
+    <Env></Env>
+</head>
+<table class="table-bordered" style="width:100%;height:100%">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>UserName</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var element in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(m => element.Id)</td>
+                <td>@Html.DisplayFor(m => element.UserName)</td>
+                <td align="center">
+                    @using (Html.BeginForm("AddNewUser", "Account", FormMethod.Post, new { @class = "form-signin" }))
+                    {
+                        <input type="hidden" name="userName" value="@element.UserName" />
+                        <input class="btn btn-success" type="submit" value="Edit" formaction="UserEdit" /> <input class="btn btn-danger" type="submit" value="Delete" formaction="UserDeleting" onclick="return confirm('You sure,that you want to delete User?');">
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.ActionLink("Add New User", "AddNewUser", "Account", htmlAttributes: new { @class = "btn btn-success" })
+

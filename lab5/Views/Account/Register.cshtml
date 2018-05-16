@@ -1,0 +1,86 @@
+﻿
+@using lab2.Models.ViewModels
+@model RegisterViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <environment include="Development">
+        <link href="~/css/Styles.css" rel="stylesheet" />
+        <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+        <link href="~/css/signin.css" rel="stylesheet" />
+    </environment>
+    <title>Register</title>
+    <style>
+
+        a.register {
+            color: white;
+            text-decoration: none
+        }
+    </style>
+</head>
+<body>
+    <main role="main">
+        <div class="container">
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-signin" }))
+            {
+                <div asp-validation-summary="ModelOnly"></div>
+
+                <h2 class="form-signin-heading">Registration Form</h2>
+                <table class="table">
+                    <tr>
+                        <td></td>
+                        <td>@Html.ValidationMessageFor(model => model.Email)</td>
+                    </tr>
+                    <tr>
+                        <td><label for="Email" class="control-label">Email</label></td>
+                        <td>
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "input-block-level", @placeholder = "Email" } })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>@Html.ValidationMessageFor(model => model.Login)</td>
+                    </tr>
+                    <tr>
+                        <td><label for="Login" class="control-label">Login</label></td>
+                        <td>
+                            @Html.EditorFor(model => model.Login, new { htmlAttributes = new { @class = "input-block-level", placeholder = "Login" } })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>@Html.ValidationMessageFor(model => model.Password)</td>
+                    </tr>
+                    <tr>
+                        <td><label for="Password" class="control-label">Password</label></td>
+                        <td>
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "input-block-level", placeholder = "Password" } })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>@Html.ValidationMessageFor(model => model.PasswordConfirm)</td>
+                    </tr>
+                    <tr>
+                        <td><label for="PasswordConf" class="control-label">Confirm Password</label></td>
+                        <td>
+                            @Html.EditorFor(model => model.PasswordConfirm, new { htmlAttributes = new { @class = "input-block-level", placeholder = "Confirm Password" } })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <label class="field-validation-error">@Html.ViewBag.LoginErrorMessage</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" align="right"><button class=" btn btn-large btn-primary" type="submit">Register Now</button> <div class="btn btn-success">@Html.ActionLink("Sign in", "Login", "Account")</div> </td>
+                    </tr>
+                </table>
+            }
+        </div>
+    </main>
+</body>

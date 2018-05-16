@@ -1,0 +1,106 @@
+﻿@{
+    ViewData["Title"] = "Contact information";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model ClientsViewModel
+@using lab2.Models
+@using IGILab1Norm;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<div style="border:double grey 4px; margin-top:5px; padding:20px; padding-bottom:20px; ">
+
+    <form asp-action="Index" class="form-inline" method="post" style=" width:600px;margin:0px auto;">
+        Client FIO: @Html.TextBox("ClientFIO", Model.ClientFilter.ClientFIO)
+        Passport Number: @Html.TextBox("PassNum", Model.ClientFilter.PassNum)
+        Phone: @Html.TextBox("Phone", Model.ClientFilter.Phone)
+        <input type="submit" value="Find" />
+    </form>
+    <table style="width:100%; border:4px double; padding:20px;">
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortState="@Model.ClientSort.Models.FIOSort">
+                    FIO
+                </a>
+            </th>
+            <th>
+                Sex
+            </th>
+            <th>
+                Birthday
+            </th>
+            <th>
+                Adress
+            </th>
+            <th>
+                Phone
+            </th>
+            <th>
+                Passport number
+            </th>
+            <th>
+
+            </th>
+        </tr>
+        @foreach (Client current in Model.Clients)
+        {
+            <tr>
+                <td>@current.Id</td>
+                <td>@current.ClienFIO</td>
+                <td>@current.ClientSex</td>
+                <td>@current.Birthday.ToString("yyyy-MM-dd")</td>
+                <td>@current.Adres</td>
+                <td>@current.Phone</td>
+                <td>@current.PassNum</td>
+                <td align="center" class="tdElem">
+                    @using (Html.BeginForm("Editing", "Client", FormMethod.Post, new { @class = "form-signin" }))
+                    {
+                        <input type="hidden" name="id" value="@current.Id.ToString()" />
+                        <input class="btn btn-success" type="submit" value="Edit" formaction="Edit" />
+                        <input class="btn btn-danger" type="submit" value="Delete" formaction="Delete" onclick="return confirm('Are you sure, that you want to delete client?');">
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+    @lab2.Helpers.NavigationHelper.CreateNavigation(Html, "/Client/Index", Model.PageViewModel)
+    @using (@Html.BeginForm("AddNewClient", "Client", FormMethod.Post))
+    {
+
+        Client client = (Client)ViewData["AddingClient"];
+        <input type="hidden" value="@client.Id" name="Id" />
+        <div class="form-group">
+            <label for="ClientFIO">Input client FIO</label>
+
+            @Html.EditorFor(model => client.ClienFIO)
+        </div>
+        <div class="form-group">
+            <label for="ClientSex">Input client sex</label>
+
+            @Html.EditorFor(model => client.ClientSex)
+        </div>
+        <div class="form-group">
+            <label for="Birthday">Input client birthday</label>
+
+            @Html.EditorFor(model => client.Birthday)
+        </div>
+        <div class="form-group">
+            <label for="Adress">Input home adress</label>
+
+            @Html.EditorFor(model => client.Adres)
+        </div>
+        <div class="form-group">
+            <label for="Phone">Input client phone</label>
+
+            @Html.EditorFor(model => client.Phone)
+        </div>
+        <div class="form-group">
+            <label for="PassNum">Input client passport number</label>
+
+            @Html.EditorFor(model => client.PassNum)
+        </div>
+        <input type="submit" />
+
+    }
+</div>

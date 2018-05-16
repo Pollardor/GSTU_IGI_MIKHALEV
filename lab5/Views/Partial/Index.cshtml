@@ -1,0 +1,54 @@
+﻿@using lab2.Models.ViewModels
+@model PartialViewModel
+@using IGILab1Norm
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table style="width:100%; border:4px double; padding:20px;">
+    <tr>
+        <th>ID</th>
+        <th>
+            Mark
+        </th>
+        <th>Register Number</th>
+        <th>Body Number</th>
+        <th>Engine Number</th>
+        <th>
+            Mileage
+        </th>
+        <th>
+            Car Price
+        </th>
+        <th>
+            Day Price
+        </th>
+        <th>
+            Date TO
+        </th>
+        <th>Mech FIO</th>
+        <th>
+            Car Age
+        </th>
+        <th>
+
+        </th>
+    </tr>
+    @foreach (Car current in Model.Cars)
+    {
+        <tr>
+            <td>@current.CarID</td>
+            <td>@current.CarMark</td>
+            <td>@current.RegNum</td>
+            <td>@current.BodyNum</td>
+            <td>@current.EngNum</td>
+            <td>@current.Mileage</td>
+            <td>@current.CarPrice</td>
+            <td>@current.DayPrice</td>
+            <td>@current.DateTO.ToString("yyyy-MM-dd")</td>
+            <td>@current.MechFIO</td>
+            <td>@current.CarAge</td>
+        </tr>
+    }
+</table>

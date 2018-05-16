@@ -1,0 +1,61 @@
+﻿@model IGILab1Norm.Car
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (@Html.BeginForm("SaveChanges", "Car", FormMethod.Post))
+{
+    
+    <input type="hidden" value="@Model.CarID" name="CarID" />
+    <div class="form-group">
+        <label for="Mark">Input mark</label>
+
+        @Html.EditorFor(model => Model.CarMark)
+    </div>
+    <div class="form-group">
+        <label for="RegNum">Input registration number</label>
+
+        @Html.EditorFor(model => Model.RegNum)
+    </div>
+    <div class="form-group">
+        <label for="BodyNum">Input body number</label>
+
+        @Html.EditorFor(model => Model.BodyNum)
+    </div>
+    <div class="form-group">
+        <label for="EngNum">Input engine number</label>
+
+        @Html.EditorFor(model => Model.EngNum)
+    </div>
+    <div class="form-group">
+        <label for="Milleage">Input milleage</label>
+
+        @Html.EditorFor(model => Model.Mileage)
+    </div>
+    <div class="form-group">
+        <label for="CarPrice">Input car price</label>
+
+        @Html.EditorFor(model => Model.CarPrice)
+    </div>
+    <div class="form-group">
+        <label for="DayPrice">Input day price</label>
+
+        @Html.EditorFor(model => Model.DayPrice)
+    </div>
+    <div class="form-group">
+        <label for="DateTO">Input date of TO</label>
+
+        @Html.EditorFor(model => Model.DateTO)
+    </div>
+    <div class="form-group">
+        <label for="MechFIO">Input mechanick FIO</label>
+
+        @Html.EditorFor(model => Model.MechFIO)
+    </div>
+    <div class="form-group">
+        <label for="CarAge">Input car age</label>
+
+        @Html.EditorFor(model => Model.CarAge)
+    </div>
+    <input type="submit" />
+    }

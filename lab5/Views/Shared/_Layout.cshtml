@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+@using Microsoft.AspNetCore.Identity
+@using lab2.Models.AccountModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper "lab2.Helpers.EnvTagHelper, lab2"
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Lab2</title>
+
+    <environment include="Development">
+
+
+    </environment>
+    <Env></Env>
+    <style type="text/css">
+        body {
+            padding-top: 0 !important;
+            min-height: 75rem;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="~/Car/Index">Index</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <ul class="navbar-nav mr-auto">
+
+            @if (SignInManager.IsSignedIn(User) && User.IsInRole("admin"))
+            {
+
+                <li class="nav-item active">
+                    <a class="nav-link" href="~/Car/Index">Cars <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="~/Client/Index">Clients <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="~/Rent/Index">Rents <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="~/index.html">HTML <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="~/Account/EditingUsers">Edit Users<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="~/Partial/Index">Partial <span class="sr-only">(current)</span></a>
+                </li>
+            }
+            else
+            {
+                @if (SignInManager.IsSignedIn(User) && User.IsInRole("user"))
+                {
+
+                    <li class="nav-item active">
+                        <a class="nav-link" href="~/Car/Index">Cars <span class="sr-only">(current)</span></a>
+                    </li>
+                }
+
+            }
+        </ul>
+
+        <div class="form-inline my-2 my-lg-0">
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <div class="btn btn-dark" style="padding-left:10px;">@Html.ActionLink("Log Out", "Logout", "Account")</div>
+                <span class="navbar-text pull-right" style="padding-left:10px;">Hi, @User.Identity.Name! </span>
+            }
+            else
+            {
+                <div class="btn btn-dark">@Html.ActionLink("Register", "Register", "Account")</div>
+                <div class="btn btn-dark">@Html.ActionLink("Sign in", "Login", "Account")</div>
+
+
+            }
+        </div>
+
+    </nav>
+    @RenderBody()
+</body>
+</html>
