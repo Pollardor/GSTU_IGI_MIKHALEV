@@ -1,0 +1,245 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Операции</title>
+    <link href="lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <script src="lib/jquery/dist/jquery.js"></script>
+    <link href="lib/jquery-ui/themes/base/jquery-ui.min.css" rel="stylesheet" />
+    <script src="lib/jquery-ui/jquery-ui.js"></script>
+    <script src="lib/jquery-ui/ui/i18n/datepicker-ru.js"></script>
+
+</head>
+<body>
+    <div class="container">
+        <h2>Список операций</h2>
+        <form name="operationForm">
+            <input type="hidden" name="rentID" value="0" />
+            <div class="form-group">
+                <label for="CarMark">Cars:</label>
+                <select id="carID" name="carID"></select>
+            </div>
+            <div class="form-group">
+                <label for="ClientFIO">Clients:</label>
+                <select id="clientId" name="clientId"></select>
+            </div>
+            <div class="form-group">
+                <label for="rentPrice">Стоимость:</label>
+                <input class="form-control" name="rentPrice" />
+            </div>
+            <div class="form-group">
+                <label for="rentDate">Дата:</label>
+                <input class="form-control" name="rentDate" id="rentDate" />
+            </div>
+            <div class="form-group">
+                <label for="workerFIO">Работник:</label>
+                <input class="form-control" name="workerFIO" id="workerFIO" />
+            </div>
+            <div class="panel-body">
+                <button type="submit" class="btn btn-sm btn-primary">Сохранить</button>
+                <a id="reset" class="btn btn-sm btn-primary">Сбросить</a>
+            </div>
+        </form>
+        <table class="table table-condensed table-striped table-bordered">
+            <thead><tr><th>Код</th><th>Топливо</th><th>Емкость</th><th>Приход-расход</th><th>Дата</th><th></th><th></th><th></th></tr></thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <script>
+
+        // Получение всех операций
+        function Getoperations() {
+            $.ajax({
+                url: '/api/Rent',
+                type: 'GET',
+                contentType: "application/json",
+                success: function (operations) {
+                    var rows = "";
+                    $.each(operations, function (index, operation) {
+                        // добавляем полученные элементы в таблицу
+                        rows += row(operation);
+                    })
+                    $("table tbody").append(rows);
+                 }
+            });
+        }
+
+        function Getoperation(id) {
+            $.ajax({
+                url: '/api/Rent/'+id,
+                type: 'GET',
+                contentType: "application/json",
+                success: function (operation) {
+                    var form = document.forms["operationForm"];
+                    form.elements["rentID"].value = operation.rentID;
+                    form.elements["carID"].selectedIndex = operation.carID;
+                    form.elements["clientId"].selectedIndex = operation.clientId;
+                    form.elements["rentPrice"].value = operation.rentPrice;
+                    form.elements["rentDate"].value = operation.rentDate.substring(0, 10);
+                    form.elements["workerFIO"].value = operation.workerFIO;
+                }
+            });
+        }
+
+        function Createoperation(rentID, carID, clientId, rentPrice, rentDate, workerFIO) {
+            $.ajax({
+                url: "api/Rent",
+                contentType: "application/json",
+                method: "POST",
+                data: JSON.stringify({
+                    RentID: rentID,
+                    CarID: carID,
+                    ClientId: clientId,
+                    RentPrice: rentPrice,
+                    RentDate: rentDate,
+                    WorkerFIO: workerFIO
+                }),
+                success: function (operation) {
+                    reset();
+                    var form = document.forms["operationForm"];
+                    operation.CarID = form.elements["carID"].options[carID].text;
+                    operation.ClientID = form.elements["clientID"].options[clientID].text;
+                    $("tr[data-rowid='" + operation.rentID + "']").replaceWith(row(operation));
+                }
+            })
+        }
+
+        function Editoperation(rentID, carID, clientId, rentPrice, rentDate, workerFIO) {
+            $.ajax({
+                url: "api/Rent",
+                contentType: "application/json",
+                method: "PUT",
+                data: JSON.stringify({
+                    RentID: rentID,
+                    CarID: carID,
+                    ClientId: clientId,
+                    RentPrice: rentPrice,
+                    RentDate: rentDate,
+                    WorkerFIO: workerFIO
+                }),
+                success: function (operation) {
+                    reset();
+                    var form = document.forms["operationForm"];
+                    operation.carID = form.elements["carID"].options[carID].text;
+                    operation.clientID = form.elements["clientID"].options[clientId].text;
+                    $("tr[data-rowid='" + operation.RentID + "']").replaceWith(row(operation));
+                }
+            })
+        }
+
+
+        function reset() {
+            var form = document.forms["operationForm"];
+            form.reset();
+            form.elements["operationId"].value = 0;
+        }
+
+        function Deleteoperation(id) {
+            $.ajax({
+                url: "api/Rent/" + id,
+                contentType: "application/json",
+                method: "DELETE",
+                success: function (operation) {
+                    $("tr[data-rowid='" + operation.rentID + "']").remove();
+                }
+            })
+        }
+
+        var row = function (operation) {
+            return "<tr data-rowid='" + operation.rentID + "'><td>" + operation.rentID + "</td>" +
+                "<td>" + operation.carMark + "</td>" +
+                "<td>" + operation.clientName + "</td>" +
+                "<td>" + operation.rentPrice + "</td>" +
+                "<td>" + operation.rentDate.substring(0,10) + "</td>" +
+                "<td><a class='editLink' data-id='" + operation.rentID + "'>Изменить</a> | " +
+                "<a class='removeLink' data-id='" + operation.rentID + "'>Удалить</a></td></tr>";
+        }
+
+
+        function GetClients() {
+            var listItems = "";
+            $.ajax({
+                url: '/api/Rent/clients',
+                type: 'GET',
+                contentType: "application/json",
+                success: function (clients) {
+                    listItems = listItems + "<option value=0 selected>(выбор)</option>";
+                    $.each(clients, function (index, client) {
+                        listItems = listItems + "<option value='" + client.Id + "'>" + client.clienFIO + "</option>";
+                    });
+                    $("#clientId").html(listItems);
+                }
+            });
+        }
+
+
+        function GetCars() {
+            var listItems = "";
+            $.ajax({
+                url: '/api/Rent/cars',
+                type: 'GET',
+                contentType: "application/json",
+                success: function (cars) {
+                    listItems = listItems + "<option value=0 selected>(выбор)</option>";
+                    $.each(cars, function (index, car) {
+                        
+                        listItems = listItems + "<option value='" + car.carID + "'>" + car.carMark + "</option>";
+                    });
+                    $("#carID").html(listItems);
+                }
+            });
+        }
+
+
+
+        $("#reset").click(function (e) {
+
+            e.preventDefault();
+            reset();
+        })
+
+
+
+        $("form").submit(function (e) {
+            e.preventDefault();
+            var RentID = this.elements["rentID"].value;
+            var CarID = this.elements["carID"].selectedIndex;
+            var ClientID = this.elements["clientId"].selectedIndex;
+            var RentPrice = this.elements["rentPrice"].value;
+            var RentDate = this.elements["rentDate"].value;
+            var workerFIO = this.elements["workerFIO"].value;
+            if (RentID == 0) {
+                Createoperation(RentID, CarID, ClientID, RentPrice, RentDate, workerFIO);
+            }
+            else {
+                Editoperation(RentID, CarID, ClientID, RentPrice, RentDate, workerFIO);
+            }
+        });
+
+
+        $("body").on("click", ".editLink", function () {
+            var id = $(this).data("id");
+            Getoperation(id);
+        })
+
+        $("body").on("click", ".removeLink", function () {
+            var id = $(this).data("id");
+            Deleteoperation(id);
+        })
+
+        Getoperations();
+
+        GetClients();
+
+        GetCars();
+
+
+        $(document).ready(function () {
+               $("#date").datepicker({ dateFormat: "yy-mm-dd" });
+        });
+    </script>
+</body>
+
+</html>

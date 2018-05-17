@@ -1,0 +1,13 @@
+D:\University\IGI\Lab6\Lab6\Lab6\bin\Debug\netcoreapp2.0\Lab6.deps.json
+D:\University\IGI\Lab6\Lab6\Lab6\bin\Debug\netcoreapp2.0\Lab6.runtimeconfig.json
+D:\University\IGI\Lab6\Lab6\Lab6\bin\Debug\netcoreapp2.0\Lab6.runtimeconfig.dev.json
+D:\University\IGI\Lab6\Lab6\Lab6\bin\Debug\netcoreapp2.0\Lab6.dll
+D:\University\IGI\Lab6\Lab6\Lab6\bin\Debug\netcoreapp2.0\Lab6.pdb
+D:\University\IGI\Lab6\Lab6\Lab6\bin\Debug\netcoreapp2.0\IGILab1Norm.dll
+D:\University\IGI\Lab6\Lab6\Lab6\obj\Debug\netcoreapp2.0\Lab6.csprojResolveAssemblyReference.cache
+D:\University\IGI\Lab6\Lab6\Lab6\obj\Debug\netcoreapp2.0\Lab6.csproj.CoreCompileInputs.cache
+D:\University\IGI\Lab6\Lab6\Lab6\obj\Debug\netcoreapp2.0\Lab6.AssemblyInfoInputs.cache
+D:\University\IGI\Lab6\Lab6\Lab6\obj\Debug\netcoreapp2.0\Lab6.AssemblyInfo.cs
+D:\University\IGI\Lab6\Lab6\Lab6\obj\Debug\netcoreapp2.0\Lab6.csproj.CopyComplete
+D:\University\IGI\Lab6\Lab6\Lab6\obj\Debug\netcoreapp2.0\Lab6.dll
+D:\University\IGI\Lab6\Lab6\Lab6\obj\Debug\netcoreapp2.0\Lab6.pdb
